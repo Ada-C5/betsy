@@ -1,0 +1,106 @@
+/** MAIN STYLING **/
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Palanquin', sans-serif;
+  font-size: 1rem;
+}
+
+main {
+  padding: 1rem;
+}
+
+h1 {
+  color: #42bad3; /* ditzy bright blue */
+  font-weight: lighter;
+  font-size: 2.5rem;
+  padding: 1rem;
+  margin: 0rem;
+}
+
+h2 {
+    color: #d8563d; /* ditzy red */
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+h3 {
+  color: #42bad3; /* ditzy bright blue */
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+h4 { 
+
+  color: #3f52b8; /* ditzy dark blue */
+  font-size: 1.5rem;
+  padding: 1rem;
+
+}
+
+span {
+  color: #3f52b8; /* ditzy dark blue */
+}
+
+a {
+  color: #3f52b8; /* ditzy dark blue */
+}
+
+p {
+  color: #3f52b8;  /* ditzy dark blue */
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+li { 
+  color: #42bad3; /* ditzy bright blue */ 
+  list-style-type: circle; 
+ }
+
+
+hr.dark-blue {
+  border: 0.1rem solid #3f52b8;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+hr.bright-blue {
+  border: 0.1rem solid #42bad3;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+.thumnbnail {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.caption {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.caption p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.btn {
+  margin-left: 0.5rem;
+}
+
+/** FONT AWESOME **/
+
+.fa {
+  color: #3f52b8; /* ditzy dark blue */
+  font-size: 3rem !important;
+}
+

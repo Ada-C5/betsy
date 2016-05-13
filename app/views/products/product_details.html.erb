@@ -1,0 +1,32 @@
+<section class="product-details">
+  <h2>
+    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+    <%= @product.name %>
+  </h2>
+    <%=image_tag(("#{@product.image_url}"), :class => 'img-responsive') %>
+  <p>
+    Price: <%= number_to_currency(@product.price_in_dollars) %></br>
+    Quantity In Stock: <%= @product.quantity %></br>
+    Description: <%= @product.description %></br>
+    Sold by: <%= link_to @merchant.first.user_name,  merchant_store_path(@merchant.first.id) %>
+  </p>
+
+   <%=link_to "BUY NOW", cart_path(@product.id), method: :post, :class => "btn btn-primary btn-md" %>
+
+</section>
+
+<section>
+  <h2>
+    Product Reviews
+  </h2>
+  <% @reviews.each do |review| %>
+    <p>
+      Rating: <%= review.rating %></br>
+      Review: <%= review.review_text %>
+    </p>
+  <%end%>
+
+  <% if !current_user || current_user.id != @product.user_id %>
+    <%=link_to "Review this product", new_product_review_path(@product.id), :class => "btn btn-primary btn-md"%>
+  <% end %>
+</section>

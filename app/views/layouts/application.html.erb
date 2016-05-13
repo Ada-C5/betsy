@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Betsy</title>
+  <title>dITzy*</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet' type='text/css'>
+        <meta charset="UTF-8">
+    <!-- for FF, Chrome, Opera -->
+    <link rel="icon" type="image/png" href="../assets/ditzy_icon.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/ditzy_icon.png" sizes="32x32">
+    <!-- for IE -->
+    <link rel="icon" type="image/x-icon" href="../assets/ditzy_icon.png" >
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/ditzy_icon.png"/> 
+    
 </head>
 <body>
+<header>
+  <%=link_to image_tag("ditzy_logo_final.png"), products_path%>
+<% if current_user %> 
+  <span>
+    Welcome, <%= current_user.user_name.capitalize %>!
+  </span>
+  <%= link_to "Logout", logout_path, method: "delete", :class => "btn btn-primary btn-sm" %>
+  <%= link_to "Dashboard", dashboard_path(current_user.id), method: "get", :class => "btn btn-primary btn-sm"  %> 
+  <%= link_to "Your Cart", cart_path(current_user.id), method: "get", :class => "btn btn-primary btn-sm"  %>
+<% else %> 
+  <%= link_to "Login", new_session_path, :class => "btn btn-primary btn-sm"  %> 
+  <%= link_to "Create An Account", new_user_path, :class => "btn btn-primary btn-sm"  %> 
+  <%= link_to "Your Cart", cart_path, method: "get", :class => "btn btn-primary btn-sm"  %>
+<% end %>
 
-<%= yield %>
+<h1 class='text-right'>
+  gr8 stuff 4 good lady*z
+</h1>
 
+<hr class='dark-blue'>
+<hr class='bright-blue'>
+
+</header>
+  <main>
+    <%= yield %>
+  </main>
 </body>
 </html>

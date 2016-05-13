@@ -1,0 +1,37 @@
+<h2>
+  <i class="fa fa-shopping-cart" aria-hidden="true"></i> Your Cart of Awesome
+</h2>
+
+<% @total = 0 %>
+<% @order_items.each do |item| %>
+  <% product = Product.find(item.product_id) %>
+  <ul>
+    <li>
+      <%= product.name %>
+    </li>
+    <li>
+      Price: $<%= product.price_in_dollars %>
+    </li>
+    <li>
+      Quantity: <%= item.quantity %>
+      <% if product.quantity > 1 %>
+        <%= form_for(item, url: update_cart_path(item.id), method: :patch) do |f| %>
+          <%= f.label "Change Quantity" %>
+          <%= f.select(:quantity, options_for_select((1..product.quantity)), :placeholder => 1) %>
+          <%= f.submit "Update" %>
+        <% end %>
+      <% else %>
+        (Only 1 left in stock!)
+      <% end %>
+    </li>
+    <%= link_to "Remove This Item", {:controller => :order_item, :action => 'destroy', :id => item.id}, method: :delete,:class => "btn btn-primary btn-sm" %>
+  </ul>
+  <% @total += (product.price_in_dollars * item.quantity) %>
+<% end %>
+
+  <p>Total: <%= number_to_currency(@total) %></p>
+
+<%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
+
+
+<%= link_to "Shop Some More", products_path, :class => "btn btn-primary btn-md" %>

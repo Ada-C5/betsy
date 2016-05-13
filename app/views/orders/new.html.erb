@@ -1,0 +1,25 @@
+<h2>
+  <i class="fa fa-credit-card" aria-hidden="true"></i>
+  Billing Information
+</h2>
+
+<%= form_for :orders do |f| %>
+  <div class="form-group">
+    <p>
+      Name on credit card: <%= f.text_field :name_on_cc %> <br />
+      Credit Card Number: <%= f.text_field :credit_card_number %> <br />
+      Address: <%= f.text_field :address %><br />
+      Zip: <%= f.text_field :zip %><br />
+      Security Code: <%= f.text_field :security_on_cc %><br />
+      Expiration:
+      <%= f.select :month, 1..12 %>
+      <%= f.select :year, Date.today.year.. 8.years.from_now.year %><br />
+      Email: <%= f.text_field :email %><br />
+      <% status = "pending" %>
+      <% f.hidden_field :status => status %><br />
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-md", action: "create") do %>
+          Submit
+      <% end %>
+    </p>
+  </div>
+<%end%>

@@ -1,0 +1,11 @@
+<h1 class="merchant"><%= @user.name %></h1>
+<h2 class="">Products</h2>
+
+
+<% @products.each do |product| %>
+	<p class="product-detail-listing">
+		<strong>Product ID:</strong> <%= product.id %><br>
+		<%= link_to product.name, user_product_path(product.user_id, product.id) %><br>
+		<%= product.price %>
+	</p>	
+<%end%>

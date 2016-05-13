@@ -1,0 +1,4 @@
+user_id,created_at,updated_at,address,name_on_cc,security_on_cc,expiration_on_cc,zip,email
+1,2016-05-07 04:35:24,2016-05-07 04:35:24,1234 elmberry lane,Joe Doe,357,2019,89667
+2,2016-05-07 04:35:24,2016-05-07 04:35:24,1234 elmberry lane,Joe Doe,357,2019,89667
+3,2016-05-07 04:35:24,2016-05-07 04:35:24,1234 elmberry lane,Joe Doe,357,2019,89667

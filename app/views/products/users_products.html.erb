@@ -1,0 +1,17 @@
+<h2>
+  <i class="fa fa-user" aria-hidden="true"></i>
+  <%= @merchant.user_name %>
+</h2>
+<h3>
+  Products
+</h3>
+<div class='form-group'>
+  <% @products.each do |product| %>
+  	<p class="product-detail-listing">
+      <%=image_tag("#{product.image_url}")%>
+  		<strong>Product ID:</strong> <%= product.id %><br>
+  		<%= link_to product.name, product_path(product.id) %><br>
+  		<%= product.price_in_dollars %>
+  	</p>	
+  <%end%>
+</div>

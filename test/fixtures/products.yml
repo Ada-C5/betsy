@@ -1,0 +1,20 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+wedding_football: 
+# column: value
+  name: "Wedding Football"
+  price_in_dollars: 240
+  user_id: 1
+  visible: true
+  quantity: 35
+orange_zest: 
+# column: value
+  name: "Candied Orange Zest"
+  price_in_dollars: 67
+  user_id: 1
+  visible: true
+  quantity: 18

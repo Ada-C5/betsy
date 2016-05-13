@@ -1,0 +1,65 @@
+<h2 class="text-center">
+  NEW PRODUCTS
+</h2>
+
+<div class='center'>
+  <div class='row'>
+    <% @new_products.each do |product| %>
+      <div class="col-sm-4">
+        <div class="icon">
+          <div class="thumbnail" > 
+           <%= link_to(image_tag(product.image_url),product_path(product.id)) %>
+            <div class='caption'>
+             <div class="col-md-12 col-md-offset-5 "> 
+              <%= link_to product.name, product_path(product.id) %>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+</div>
+
+</br></br>
+
+
+<h2 class="text-center">
+  ALL PRODUCTS
+</h2>
+<div class='center'>
+  <div class='row'>
+    <% @products.each do |product| %>
+      <div class="col-sm-4 col-sm-offset-4 ">
+        <div class='icon'>
+          <div class='thumbnail' > 
+            <%= link_to(image_tag(product.image_url),product_path(product.id)) %>
+            <div class='caption'>
+              <div class="col-md-9 col-md-offset-3 "> 
+                <p class="text-center">
+              <%= link_to product.name, product_path(product.id) %></br>
+              <%= number_to_currency(product.price_in_dollars) %><br>
+                </p>
+            </div>
+              <div class="col-sm-4 col-sm-offset-5 ">
+              <%=link_to "BUY NOW", cart_path(product.id), method: :post, :class => "btn btn-primary btn-sm" %>
+              </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
+
+<aside>
+<h2 class="text-center">
+  All CATEGORIES
+</h2>
+<ul>
+<% @categories.each do |category| %>
+  <li><%= link_to category.name, category_products_path(category.id) %></li>
+
+  <% end %></ul>
+</aside>
