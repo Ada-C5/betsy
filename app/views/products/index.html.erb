@@ -1,0 +1,30 @@
+<h1>Products</h1>
+<% if @category %>
+  <h3>Filtered By <%= @category.titleize %></h3>
+<% end %>
+<section class="container col-xs-9">
+  <article>
+    <div>
+      <% @products.each do |product| %>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="panel panel-default">
+            <section class = "panel-body"><a href= "<%=product_path(product.id)%>" >
+            <a href= "<%=product_path(product.id)%>" >
+              <%= image_tag("#{product.photo_url}", :crop => :fill, class: "img-responsive") %>
+              <caption>
+                </section>
+                <div class="panel-heading"><%=product.name%></div>
+              </caption>
+          </a>
+        </div>
+      </div>
+      <%end%>
+    </div>
+  </article>
+</section>
+
+<section>
+  <% if current_user %>
+  <%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %>
+  <% end %>
+</section>

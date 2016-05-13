@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
-
+gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.15'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -24,7 +24,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+
+
+gem 'traceroute'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -35,13 +39,22 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'simplecov', '~> 0.11.2'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem "pry-rails"
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'rails-erd'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
+group :production do
+  gem 'rails_12factor'
+  gem 'pg', '~> 0.15'
+end

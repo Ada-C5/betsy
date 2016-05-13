@@ -1,0 +1,23 @@
+<h2>View Order</h2>
+<% @sum = 0%>
+<h3>Order #<%=@order.id%>, Status: <%=@order.status%></h3>
+Order placed on: <%=@order.updated_at%>
+
+<%@order_items.each do |item|%>
+  <%= link_to "#{(Product.find_by(id: item.product_id)).name}", product_path(item.product_id) %> : <%=item.quantity%>
+  Unit price: <%=item.checkout_price%>
+  Item price subtotal:<%=@item_price = item.checkout_price * item.quantity%>
+  <%@sum += @item_price%>
+<%end%>
+Order total:
+$<%= @sum %>
+
+<h3> Order information </h3>
+<%if !User.find_by(id: @order.user_id).nil? %>
+  <%user = User.find(@order.user_id) %>
+  Username: <%= user.username %>
+  Email address: <%= user.email %>
+<% end %>
+Mailing address: <%= @order.mailing_address %>
+Credit card - last 4 digits: <%= @order.cc_digits %>
+Credit card - expiration date: <%= @order.expiration %>

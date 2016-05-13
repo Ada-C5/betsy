@@ -1,0 +1,42 @@
+<%@sum = 0%>
+<h2>Order summary:</h2>
+<h3>Order #<%=current_order.id%>, <%=current_order.status%>:</h3>
+<%current_order.order_items.each do |item|%>
+  <%= link_to "#{Product.find_by(id: item.product_id).name}", product_path(item.product_id) %> : <%=item.quantity%>
+  Unit price: <%=Product.find_by(id: item.product_id).price%>
+  Item price subtotal:<%=@item_price = (Product.find_by(id: item.product_id).price) * item.quantity%>
+  <%(@sum += @item_price) if @item_price>0%>
+  <br />
+<%end%>
+Order total:
+$<%= @sum %>
+<br />
+<h2>Enter your order details below:</h2>
+CVV:
+<%= form_for @order, url: cart_checkout_path, html: {method: :patch} do |f| %>
+
+  <p><%= f.label :cc_digits %>
+  <%= f.text_field :cc_digits, length: {is:16}%></p>
+
+  <p><%= f.label :expiration %>
+  <%= f.date_select :expiration, required: true %></p>
+
+  CCV:
+  <%= text_field "CVV", required: true %>
+
+  <p>Name:
+  <%= text_field "Name", required: true %></p>
+
+  <p><%= f.label :mailing_address %>
+  <%= f.text_field :mailing_address, required: true%></p>
+
+  Billing zip code:
+  <%= text_field "Zip", required: true %>
+
+  <p>
+    <% if session[:user_id] %>
+      <%= hidden_field_tag :user_id, session[:user_id] %>
+    <%end%>
+    <%= f.submit "Place Order"%>
+  </p>
+<%end%>

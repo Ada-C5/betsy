@@ -13,3 +13,168 @@
  *= require_tree .
  *= require_self
  */
+ html {
+   background-color: #444;
+   align: center;
+   text-align: center;
+   height: 100%;
+   color: black;
+ }
+
+ body {
+   width: 100%;
+   background-color: #444;
+   color: #eee;
+   height: 100%;
+   font-size: 18px;
+ }
+
+ .navbar .navbar-collapse {
+  text-align: center;
+}
+
+nav {
+  vertical-align: top;
+  float: none;
+  background-color: #111;
+  display: inline-block;
+  width: 100%;  background-color: #444;
+  border: 1px solid rgba(100, 100, 100, 0.5);
+  text-align: center;
+}
+
+nav li{
+  line-height: 2rem;
+  margin: 0;
+}
+
+ul {
+  display: inline-block;
+  text-decoration: none;
+  list-style: none;
+  text-align: center;
+  margin: auto;
+}
+
+.sidebar {
+  text-align: left;
+  z-index: 1;
+  float: left;
+  height: 100%;
+  width: 25%;
+  background-color: rgb(100, 100, 100);
+  color: #333;
+  margin: auto;
+  text-decoration: none;
+  list-style: none;
+  padding: 1rem;
+  margin-left: .5rem;
+  border-radius: 10px;
+}
+
+.col-xs-3 {
+  background-color: rgb(100, 100, 100);
+  color: #333;
+  border-radius: 10px;
+  padding: 1rem;
+  /*height: 100%;*/
+  /*width: 40rem;*/
+  list-style: none;
+  line-height: 5rem;
+  color: black;
+}
+
+.sidebar a {
+  width: 90%;
+  color: #eee;
+}
+
+footer {
+  bottom: auto;
+  margin: 5rem 20rem;
+}
+
+ .img-center {
+   margin:0 auto;
+ }
+
+ a:hover, a:visited {
+  color:#ccc;
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.side-text {
+  color: black;
+}
+
+h1, h1 {
+  font-size: 45px;
+}
+
+.footer {
+  margin: 5rem;
+}
+
+.span12 {
+  width: 45rem;
+}
+
+h6 {
+  clear: both;
+}
+
+section.container.col-xs-8 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.signup {
+  padding: 3rem;
+  display: inline-block;
+}
+
+.homelink {
+  display: inline-block;
+  padding: 1rem;
+  margin: 5rem;
+}
+
+p {
+  margin: 5rem;
+}
+
+.new-product {
+  margin: 10rem;
+}
+
+aside button {
+  margin: 3px;
+}
+
+button, input, optgroup, select, textarea {
+  color: #444;
+}
+/*img {
+  width: 33%;
+  float: left;
+}*/
+
+.dark-text {
+  color: black;
+}
+
+.result {
+  font-weight: bold;
+  text-align: right;
+  text-decoration: overline;
+}
+
+.total {
+  font-weight: bolder;
+  text-align: center;
+  text-decoration:underline;
+}

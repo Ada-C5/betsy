@@ -1,0 +1,30 @@
+<!-- <pre><%#= params %></pre> -->
+
+<h1>Edit product</h1>
+
+<%= form_for [@user, @product] do |f| %>
+  <p><%= f.label :name %>
+  <%= f.text_field :name %></p>
+
+  <p><%= f.label :price %>
+  <%= f.text_field :price %></p>
+
+  <p><%= f.label :stock %>
+  <%= f.text_field :stock %></p>
+
+  <p><%= f.label :description %>
+  <%= f.text_area :description %></p>
+
+  <p><%= f.label :category %>
+  <%= f.text_area :category %></p>
+
+  <p><%= f.label :photo_url %>
+  <%= f.text_field :photo_url %></p>
+
+    <p><%= f.check_box :status %>
+    <%= f.label :status, "Retire this product" %></p>
+
+  <%= f.hidden_field(:user_id, :value => @user.id) %>
+
+  <%= f.submit %>
+<% end %>
