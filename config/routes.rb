@@ -1,4 +1,55 @@
 Rails.application.routes.draw do
+
+  # because we need to create a session immediately upon entering the site, for guest users
+  root 'sessions#create_order'
+
+  resources :products do
+    resources :reviews, :only => [:new, :create]
+  end
+
+  resources :users, :only => [:new, :create, :show, :products]
+
+  resources :sessions, :only => [:create, :destroy, :new]
+
+  resources :categories, only: [:create, :new]
+
+  resources :orders, except: [:index]
+
+  get 'orders/:id/confirmation' => 'orders#confirmation', as: :confirmation
+
+
+  get 'users/:id/orders/' => 'orders#index'
+  # shipping button
+  patch 'users/:id/orders' => 'users#update'
+
+  # this page is for merchants' eyes. to see a certain merchant's store from a buyer's perspective, the route is get '/users/:id' => 'users#show'
+
+  get "/users/:id/products/" => "users#product"
+
+  get    "/login", to: "sessions#new", as: :login
+  delete "/logout", to: "sessions#destroy", as: :logout
+
+  # this route is named non-restfully because an "order" has two main screens: the cart screen and the checkout screen. The url should not contain an id because it is identified by the session, not by any params passed through the url.
+  get '/cart' => 'order_items#index', as: 'cart'
+
+  # adds the item to that specific order
+  post '/cart' => 'order_items#create'
+
+  delete '/cart' => 'order_items#destroy'
+
+  patch '/cart/:id' => 'order_items#update', as: 'update_cart'
+
+  put 'orders/:id/cancel' => "orders#cancel"
+  patch 'orders/:id/complete' => "orders#complete"
+  # map.search "search", :orders => index
+
+
+
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

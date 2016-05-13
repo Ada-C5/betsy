@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+beyonce_air_item:
+  order_id: 1
+  product_id: 2
+  quantity: 1

@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+beyonce_air:
+  name: "Air Beyonce breathed"
+  price: 90547
+  user_id: 1
+  stock: 1
+  status: "active"
+
+passing_product:
+  id: 1
+  name: "Bee-Venom"
+  price: 100
+  user_id: 1
+  stock: 5
+  status: "active"

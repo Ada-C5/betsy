@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Betsy</title>
+  <title>Beeyonce</title>
+  <!-- Bootstrap stuff -->
+  <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <link href='https://fonts.googleapis.com/css?family=Sacramento' rel='stylesheet' type='text/css'>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<h1 class="main-title">Beeyonce</h1>
+
+<nav class="topnav">
+  <%= link_to "Home", products_path %>
+  <%= link_to "Sign Up", new_user_path unless current_user %>
+  <%= link_to "Log In", login_path unless current_user %>
+  <%= link_to "Log Out", logout_path, method: :delete if current_user %>
+</nav>
+
+<h2 class="greeting"><%="Hello, #{current_user.username}!" if current_user %> </h2>
+
+<% flash.each do |key, value| %>
+      <div class="alert alert-danger">
+            <%= value %>
+      </div>
+<% end %>
 
 <%= yield %>
 
