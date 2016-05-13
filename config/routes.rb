@@ -1,4 +1,35 @@
 Rails.application.routes.draw do
+
+  root "welcome#index"
+
+  get 'welcome/index'
+
+  resources :products, :only => [:index, :show] do
+    resources :order_items, :only => [:create, :update, :destroy]
+    resources :reviews
+    post 'add_to_cart', on: :member
+  end
+  get 'search' => 'products#search', as: 'search_product'
+
+  resources :users, :only => [:new, :create, :show, :edit, :update] do
+    resources :reviews
+    scope module: :users do
+      resources :products
+      resources :fulfillment, :only => [:index, :show]
+    end
+  end
+
+  resources :orders, :only => [:show, :edit, :update]
+
+  resources :order_items, :only => [:show]
+
+  resources :sessions, :only => [:create]
+  delete "/logout" => "sessions#destroy"
+  get    "/login"  => "sessions#new"
+
+  resources :categories, :only => [:new, :create]
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -12,7 +43,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    # resources :products
 
   # Example resource route with options:
   #   resources :products do
@@ -53,4 +84,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+
+
 end

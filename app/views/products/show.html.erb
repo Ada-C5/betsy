@@ -1,0 +1,35 @@
+<div class="media">
+  <div class="media-left media-middle">
+    <img src=<%= @product.photo_url %>>
+  </div>
+
+  <div class="media-body">
+    <h1 class="media-heading"><%= @product.name %></h1>
+    <p><em><%= @product.description %></em></p>
+    <p><strong>Price:</strong> <%= to_money(@product.price) %></p>
+    <p><strong>Categories:</strong>
+      <%= @categories.map(&:name).join(', ') unless @categories.nil? %>
+    </p>
+    <p><strong>In stock:</strong> <%= @product.stock %></p>
+
+    <%= form_tag add_to_cart_product_path(@product.id) do %>
+           <%= select_tag :quantity, options_for_select([1,2,3,4,5,6,7,8,9,10]) %>
+           <%= submit_tag 'Add to Cart' %>
+    <% end %>
+  </div>
+</div>
+
+<p>Reviews for <%=@product.name%><p>
+<p><%=@product.display_avg(@product, @reviews).nil? ? "No reviews yet." : @product.display_avg(@product, @reviews)%></p>
+
+<% @reviews.each do |review| %>
+  <ul class="list-group">
+    <li class="list-group-item">Reviewed by: <%= review.user_id != nil ? User.find(review.user_id).name : "Guest user"%> </li>
+    <li class="list-group-item">Review: <%=review.review%></li>
+    <li class="list-group-item">Rating: <%=review.rating%></li>
+  </ul>
+<%end%>
+
+<p><%=link_to "Review this product", new_product_review_path(@product.id) unless current_user == @product.user %></p>
+
+<p><%= link_to "See all reviews", product_reviews_path(@product.id) %></p>

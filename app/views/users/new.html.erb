@@ -1,0 +1,9 @@
+<h1>I am glad you want to create an accout with us</h1>
+
+<% if @user.errors.any? %>
+    <% @user.errors.each do |column, message| %>
+      <%  flash.now[:notice] = "#{column.capitalize}: #{message} "%>
+    <% end %>
+<% end %>
+
+<%= render partial: "form", locals: { zone: @user } %>

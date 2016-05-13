@@ -1,0 +1,26 @@
+<h1>Welcome! Browse our products:</h1>
+
+<%= form_tag products_path, method: :get do %>
+<%= select_tag(:category, options_for_select(items_for_select(@categories), :selected => params[:category]), :prompt => "Browse by Category...") %>
+
+<%= select_tag(:merchant, options_for_select(items_for_select(@merchants), :selected => params[:merchant]), :prompt => "Browse by Merchant...") %>
+
+<%= submit_tag "Submit" %>
+<% end %>
+
+<div class="row">
+<% @products.each do |product| %>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <%= link_to product_path(product.id) do %>
+        <div id="product_photo"><img src =<%= product.photo_url %>> </div>
+        <div class="caption prod-index-caption">
+          <p class="prod-name-index"><%= product.name %></p>
+          <p class="price"><%= to_money(product.price) %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
