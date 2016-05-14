@@ -1,0 +1,25 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.carousel-inner img {
+  height: 100px;
+  width: 100%;
+}
+
+.photos img{
+  margin: 10px;
+  vertical-align: middle;
+  padding: 8px;
+  display: block;
+  float: left;
+  max-height: 300px;
+  min-height: 300px;
+}
+
+.container p {
+  font-size: 25px;
+}
+
+.container h1 {
+  font-size: 50px;
+}

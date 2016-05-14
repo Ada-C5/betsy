@@ -2,6 +2,50 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  root 'home#index'
+
+  post '/products/:id' => 'products#create_cart', as: :create_cart
+  post '/cart' => 'orders#update_cart'
+  #post '/products/:id' => 'products#create_review', as: :create_review
+  get '/checkout' => 'orders#new', as: :new_order
+  post '/checkout' => 'orders#create'
+  get '/checkout/:order_id' => 'orders#show', as: :checkout_confirmation
+  post '/browse' => 'products#index'
+  get '/browse/categories/:id' => 'products#category', as: :category
+  get '/sign_up' => 'users#new'
+  patch '/users/:user_id/products/:id/retired' => 'products#retire', as: :retire
+  get '/addcategories' => 'products#new_cats', as: :new_cats
+  post '/addcategories' => 'products#update_new_cats'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
+  delete '/checkout' => 'orders#destroy'
+  resources :products, only: [:index, :show]
+
+
+
+  resources :products, only: [:index, :show] do
+      resources :reviews, :only => [:new, :create]
+  end
+
+  resources :orders, except: [:new]
+
+  get 'users/:user_id/sold/:order_id' => 'orders#show', as: :sold_order
+  patch 'users/:user_id/sold' => 'orders#item_shipped'
+  get 'users/:user_id/sold' => 'orders#index', as: :sold_orders
+
+
+  resources :users do
+    resources :products
+    resources :orders
+  end
+
+  resources :billings do
+
+  end
+
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

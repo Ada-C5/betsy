@@ -1,0 +1,14 @@
+<h1>Traverse</h1>
+<p>Traverse the Universe!</p>
+
+<div class= "photos">
+
+
+<% @products.each do |product| %>
+  <%= link_to product_path(product.id) do %>
+    <%= image_tag product.photo_url %>
+  <% end %>
+<% end %>
+
+
+</div>

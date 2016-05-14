@@ -1,0 +1,7 @@
+<h1><%=@category[:name]%></h1>
+
+<% if @show.empty? %>
+  <h2>No products available for this category.</h2>
+<%end%>
+
+<%= render '/shared/products' %>

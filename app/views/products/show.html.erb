@@ -1,0 +1,36 @@
+<%= render '/shared/showproduct' %>
+
+<% if request.env['PATH_INFO'] != "/users/#{params[:user_id]}/products" && current_user == params[:user_id] && params[:user_id] != nil%>
+  <% @user = params[:user_id] %>
+  <% @product.in_stock? ? inventory_class ="success" : inventory_class = "danger" %>
+  <div class="danger"><%= "In Stock: #{@product.inventory}"%></div>
+  <%= link_to "Edit Product",  edit_user_product_path(@user, @product), class: 'btn btn-success'%>
+  <%= link_to user_product_path(@user, @product.id), class: "btn btn-danger", method: :delete, data: {confirm: 'Are you sure you want to delete this product?' } do %>
+    <i class="glyphicon glyphicon-trash"></i> Delete
+  <% end %>
+<% else %>
+  <%= "Sold By: #{User.find(@product.user_id).username}" %>
+  <br />
+  <% if @item_exists_in_cart.empty? %>
+    <% if @product.inventory == 0 %>
+      <p>Out of Stock!</p>
+    <%else%>
+      <%= "In Stock: #{@product.inventory}" %>
+      <br />
+      <% @choice = 1 %>
+      <%= form_tag(controller: "products", action:"create_cart", method: "post") do%>
+        <%= select_tag(:quantity, options_for_select((1..@product.inventory).to_a, selected: @choice), id: "quantity") %>
+        <%= hidden_field_tag(:product_id, @product.id) %>
+        <%= submit_tag("Add to Cart", class: "btn btn-primary") %>
+      <%end%>
+    <%end%>
+  <%else%>
+    <p>Added to cart.</p>
+  <%end%>
+<% end %>
+
+
+
+<!-- REVIEW  -->
+
+<%= render partial: '/shared/reviews' %>

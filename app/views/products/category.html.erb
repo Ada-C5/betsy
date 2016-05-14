@@ -1,0 +1,14 @@
+<%= render partial: "browse" %>
+
+<div class="displaycontainer">
+  <ul>
+    <% @show.each do |thing| %>
+      <%= link_to category_path(thing), class: 'product-thumbnail' do %>
+        <li>
+          <%= image_tag thing.photo_url, class: "img-responsive" %>
+          <%= link_to thing[:name], category_path(thing)%>
+      <%end%>
+        </li>
+    <% end %>
+  </ul>
+</div>

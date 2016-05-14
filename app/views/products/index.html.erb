@@ -1,0 +1,5 @@
+
+<% if request.env['PATH_INFO'] != "/users/#{params[:user_id]}/products" %>
+  <%= render partial: "browse" %>
+  <%= render '/shared/products' %>
+<% end %>
