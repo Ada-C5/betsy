@@ -1,0 +1,14 @@
+
+first_orderitem:
+  quantity: 2
+  price: 24
+  order: first_order
+  product: dog_pirate
+  user: dog_merchant
+
+second_orderitem:
+  quantity: 4
+  price: 800
+  order: first_order
+  product: sushi_cat
+  user: dog_merchant

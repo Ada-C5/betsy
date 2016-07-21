@@ -1,0 +1,43 @@
+<h1>Current Products</h1>
+<%= link_to 'Add a New Product', new_product_path,  class: "store-links" %>
+<%= link_to 'Your Current Products', user_product_path, class: "store-links" %>
+<br>
+<% if @products.empty? %>
+	<h2>You have no products! Add a product to get your store started.</h2>
+<% else %>
+<% @products.each do |product| %>
+  <div class="all-products">
+	<div class="favoritepic">
+		<% unless product.photo_url.nil? %>
+    <%= link_to (image_tag product.photo_url), product_path(product.id) %>
+	<% if product.retired == true %>
+		<p class="retired-empty">PRODUCT RETIRED</p>
+	<% end %>
+		<% end %><br>
+	</div>
+	<% if product.retired == false %>
+	<% if product.quantity == 0 %>
+		<h3>You have no stock left!</h3>
+  <% else %>
+	<br>
+	<%= link_to product.name, product_path(product.id) %>
+  <br>
+	$<%= number_with_precision product.price, precision: 2 %>
+
+	<%= form_tag '/orderitems' do  %>
+		<%= hidden_field_tag :product_id, product.id %>
+	<% end %>
+	<p class="order-quantity">Number in Stock: <%= product.quantity %></p>
+	<% end %>
+	<% end %>
+	<br>
+	<% if product.retired == false %>
+	<p><%= link_to "Edit Product", edit_product_path(product), class: 'btn btn-primary' %></p>
+	<p><%= link_to "Retire Costume", retire_product_path(product.id), method: :patch, class: "btn btn-warning" %></p>
+	<% end %>
+	<p><%= link_to "Delete Product", product_path(product.id), method: :delete, class: "btn btn-danger" %></p>
+	<hr>
+	</div>
+
+	<% end %>
+<% end %>

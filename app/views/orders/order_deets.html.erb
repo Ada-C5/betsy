@@ -1,0 +1,44 @@
+<h3>Order # <%= params[:order_id] %></h3>
+
+<table class="table table-striped" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+      <th>Shipped?</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <% orderitems = @user_orders_hash[(params[:order_id].to_i)] %>
+      <% orderitems.each do |orderitem| %>
+      <% product = Product.find(orderitem.product_id) %>
+      <tr>
+        <td><%= link_to product.name, product_path(product.id) %></td>
+        <td><%= product.price %></td>
+        <td><%= orderitem.quantity %></td>
+        <td><%= orderitem.price %></td>
+        <% if orderitem.shipped == true %>
+           <td>ITEM SHIPPED</td>
+          <% else %>
+        <td><%= link_to "Ship it!", shipped_path(orderitem.id), method: :patch, class: "btn btn-warning" %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="deets">
+    <h2 class="purple">Order Details<br></h2>
+    <p class="purple">Sold To: <%= @order.name_on_credit_card %><br></p>
+    <p class="purple">Email Address: <%= @order.email %><br></p>
+    <p class="purple">Shipping To:<br></p>
+    <%= @order.street_address %><br>
+    <%= @order.city %><br>
+    <%= @order.state %>, <%= @order.billing_zip %><br>
+    <p class="purple">Credit Card : **** **** **** **** <%= @order.credit_card_number %><br></p>
+    <p class="purple">Credit Card Exp. Date: <%= @order.credit_card_exp_date.strftime("%m/%Y") %><br></p>
+     Time Order was placed: <%= @order.updated_at.strftime("%b %e, %Y at %l:%M %P") %>
+   </div>
+    </body>
